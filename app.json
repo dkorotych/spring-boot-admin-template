@@ -1,0 +1,27 @@
+{
+  "name": "Admin Application",
+  "description": "Spring Boot Admin Application for deploy template for Heroku",
+  "logo": "https://github.com/codecentric/spring-boot-admin/blob/master/spring-boot-admin-server-ui/src/main/frontend/assets/img/favicon.png",
+  "repository": "https://github.com/dkorotych/spring-boot-admin-template",
+  "keywords": [
+    "Spring",
+    "Spring Boot",
+    "Spring Boot Admin",
+    "Gradle"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/gradle"
+    }
+  ],
+  "env": {
+    "BOOT_ADMIN_NAME": {
+      "description": "Value of spring.boot.security.name property",
+      "value": "root"
+    },
+    "BOOT_ADMIN_PASSWORD": {
+      "description": "Value of spring.boot.security.password property",
+      "generator": "secret"
+    }
+  }
+}

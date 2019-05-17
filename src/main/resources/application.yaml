@@ -1,0 +1,34 @@
+spring:
+  application:
+    admin:
+      enabled: true
+    name: "Admin Application"
+  boot:
+    admin:
+      monitor:
+        status-lifetime: 5m
+        status-interval: 5m
+      ui:
+        title: ${spring.application.name}
+        brand: "<img src=\"assets/img/icon-spring-boot-admin.svg\"><span>${spring.application.name}</span>"
+      metadata-keys-to-sanitize:
+        - ".*password$"
+        - ".*secret$"
+        - ".*key$"
+        - ".*$token$"
+        - ".*credentials.*"
+        - ".*vcap_services$"
+        - ".*clientId$"
+  security:
+    user:
+      name: ${BOOT_ADMIN_NAME:admin}
+      password: ${BOOT_ADMIN_PASSWORD:secret}
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

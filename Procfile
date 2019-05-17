@@ -1,0 +1,1 @@
+web: ./start-on-heroku.sh
