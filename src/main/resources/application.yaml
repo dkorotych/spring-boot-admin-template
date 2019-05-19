@@ -23,12 +23,3 @@ spring:
     user:
       name: ${BOOT_ADMIN_NAME:admin}
       password: ${BOOT_ADMIN_PASSWORD:secret}
-
-management:
-  endpoint:
-    health:
-      show-details: always
-  endpoints:
-    web:
-      exposure:
-        include: "*"
