@@ -15,7 +15,7 @@
  */
 package com.github.dkorotych.heroku.spring.boot.admin;
 
-import de.codecentric.boot.admin.server.config.AdminServerProperties;
+import de.codecentric.boot.admin.config.AdminServerProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;

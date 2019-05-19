@@ -50,7 +50,6 @@ dependencies {
 	implementation 'de.codecentric:spring-boot-admin-starter-server'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.projectreactor:reactor-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
@@ -60,7 +59,7 @@ dependencyManagement {
 	}
 }
 
-bootJar {
+jar {
 	archiveFileName = 'admin-console.jar'
 }
 

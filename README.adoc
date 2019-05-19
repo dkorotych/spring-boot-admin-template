@@ -14,7 +14,7 @@
 = Spring Boot Admin Template Application
 :encoding: utf-8
 :language: bash
-:version: 2.1.5
+:version: 1.5.7
 
 Spring Boot Admin Application for deploy template for Heroku
 
