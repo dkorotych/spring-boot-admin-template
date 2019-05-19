@@ -18,7 +18,7 @@
 
 Spring Boot Admin Application for deploy template for Heroku
 
-image:https://www.herokucdn.com/deploy/button.svg[title="Deploy",link="https://heroku.com/deploy/?template=https://github.com/dkorotych/spring-boot-admin-template"]
+image:https://www.herokucdn.com/deploy/button.svg[title="Deploy",link="https://heroku.com/deploy/?template=https://github.com/dkorotych/spring-boot-admin-template#1.5"]
 
 == Register client
 === Add spring-boot-admin-client dependency
