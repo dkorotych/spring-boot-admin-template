@@ -26,7 +26,7 @@ buildscript {
 
 plugins {
 	id 'java'
-	id 'com.github.hierynomus.license' version '0.15.0'
+//	id 'com.github.hierynomus.license' version '0.15.0'
 }
 
 apply plugin: "org.springframework.boot"
@@ -63,13 +63,13 @@ jar {
 	archiveFileName = 'admin-console.jar'
 }
 
-license {
-	header project.file('config/license-header.txt')
-	ext.year = Calendar.getInstance().get(Calendar.YEAR)
-	ext.developers = 'Dmitry Korotych'
-	skipExistingHeaders true
-	strictCheck true
-}
+//license {
+//	header project.file('config/license-header.txt')
+//	ext.year = Calendar.getInstance().get(Calendar.YEAR)
+//	ext.developers = 'Dmitry Korotych'
+//	skipExistingHeaders true
+//	strictCheck true
+//}
 
 task replaceVersion {
 	def file = file('README.adoc')
