@@ -1,0 +1,77 @@
+= Spring Boot Admin Template Application
+:encoding: utf-8
+:language: bash
+:version: 2.1.5
+
+Spring Boot Admin Application for deploy template for Heroku
+
+image:https://www.herokucdn.com/deploy/button.svg[title="Deploy",link="https://heroku.com/deploy/?template=https://github.com/dkorotych/spring-boot-admin-template"]
+
+== Register client
+=== Add spring-boot-admin-client dependency
+
+.pom.xml
+[source,xml,subs="+verbatim,+attributes"]
+----
+<dependency>
+    <groupId>de.codecentric</groupId>
+    <artifactId>spring-boot-admin-client</artifactId>
+    <version>{version}</version>
+</dependency>
+----
+
+or
+
+.build.gradle
+[source,groovy,subs="+attributes"]
+----
+implementation 'de.codecentric:spring-boot-admin-client:{version}'
+----
+
+
+=== Add configuration code look like this to your Spring Boot configuration file
+.application.yaml
+[source%nowrap,yaml]
+----
+spring:
+  boot:
+    admin:
+      client:
+        url: https://<admin-application-name>.herokuapp.com/
+        instance:
+          management-base-url: https://<client-application-name>.herokuapp.com/
+          service-base-url: ${spring.boot.admin.client.instance.management-base-url}
+        auto-deregistration: true
+        period: 5m
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      cache:
+        time-to-live: 1m
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
+----
+
+or
+
+.application.properties
+[source%nowrap,properties]
+----
+spring.boot.admin.client.url=https://<admin-application-name>.herokuapp.com/
+spring.boot.admin.client.instance.management-base-url=https://<client-application-name>.herokuapp.com/
+spring.boot.admin.client.instance.service-base-url=${spring.boot.admin.client.instance.management-base-url}
+spring.boot.admin.client.auto-deregistration=true
+spring.boot.admin.client.period=5m
+
+management.endpoint.health.show-details=always
+management.endpoint.health.cache.time-to-live=1m
+management.endpoints.enabled-by-default=true
+management.endpoints.web.exposure.include=*
+----
+
+http://codecentric.github.io/spring-boot-admin/{version}/#client-applications[Additional information] about configuration client application
