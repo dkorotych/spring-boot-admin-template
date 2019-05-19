@@ -26,7 +26,6 @@ buildscript {
 
 plugins {
 	id 'java'
-	id 'net.researchgate.release' version '2.8.0'
 	id 'com.github.hierynomus.license' version '0.15.0'
 }
 
@@ -72,10 +71,10 @@ license {
 	strictCheck true
 }
 
-updateVersion.doFirst {
+task replaceVersion {
 	def file = file('README.adoc')
 	def content = file.text
 	def versionPattern = /\d+(?:\.\d+)+/
-	content = content.replaceAll(":version: ${versionPattern}", ":version: ${version}")
+	content = content.replaceAll(":version: ${versionPattern}", ":version: ${spring_boot_admin_version}")
 	file.text = content
 }
