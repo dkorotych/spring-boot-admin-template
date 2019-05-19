@@ -67,6 +67,7 @@ license {
 	header project.file('config/license-header.txt')
 	ext.year = Calendar.getInstance().get(Calendar.YEAR)
 	ext.developers = 'Dmitry Korotych'
+	skipExistingHeaders true
 	strictCheck true
 }
 
