@@ -56,18 +56,6 @@ spring:
           service-base-url: ${spring.boot.admin.client.instance.management-base-url}
         auto-deregistration: true
         period: 5m
-
-management:
-  endpoint:
-    health:
-      show-details: always
-      cache:
-        time-to-live: 1m
-  endpoints:
-    enabled-by-default: true
-    web:
-      exposure:
-        include: "*"
 ----
 
 or
@@ -80,11 +68,6 @@ spring.boot.admin.client.instance.management-base-url=https://<client-applicatio
 spring.boot.admin.client.instance.service-base-url=${spring.boot.admin.client.instance.management-base-url}
 spring.boot.admin.client.auto-deregistration=true
 spring.boot.admin.client.period=5m
-
-management.endpoint.health.show-details=always
-management.endpoint.health.cache.time-to-live=1m
-management.endpoints.enabled-by-default=true
-management.endpoints.web.exposure.include=*
 ----
 
 http://codecentric.github.io/spring-boot-admin/{version}/#client-applications[Additional information] about configuration client application
