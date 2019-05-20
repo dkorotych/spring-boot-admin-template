@@ -78,4 +78,4 @@ task replaceVersion {
 	file.text = content
 }
 
-task stage(dependsOn: [bootRepackage, clean])
+task stage(dependsOn: [bootRepackage])
