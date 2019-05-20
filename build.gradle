@@ -29,8 +29,7 @@ plugins {
 //	id 'com.github.hierynomus.license' version '0.15.0'
 }
 
-apply plugin: "org.springframework.boot"
-apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
 
 group = 'com.github.dkorotych.heroku.spring.boot.admin'
 version = "${spring_boot_admin_version}-SNAPSHOT"
@@ -45,13 +44,12 @@ ext {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'de.codecentric:spring-boot-admin-starter-server'
-	implementation "de.codecentric:spring-boot-admin-server-ui-login:${spring_boot_admin_version}"
+	compile 'org.springframework.boot:spring-boot-starter-security'
+	compile 'de.codecentric:spring-boot-admin-starter-server'
+	runtimeOnly "de.codecentric:spring-boot-admin-server-ui-login:${spring_boot_admin_version}"
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
+	testCompile 'org.springframework.security:spring-security-test'
 }
 
 dependencyManagement {
@@ -79,3 +77,5 @@ task replaceVersion {
 	content = content.replaceAll(":version: ${versionPattern}", ":version: ${spring_boot_admin_version}")
 	file.text = content
 }
+
+task stage(dependsOn: [bootRepackage, clean])

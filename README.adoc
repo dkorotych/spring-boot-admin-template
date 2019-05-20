@@ -38,7 +38,7 @@ or
 .build.gradle
 [source,groovy,subs="+attributes"]
 ----
-implementation 'de.codecentric:spring-boot-admin-client:{version}'
+compile 'de.codecentric:spring-boot-admin-client:{version}'
 ----
 
 
@@ -49,25 +49,10 @@ implementation 'de.codecentric:spring-boot-admin-client:{version}'
 spring:
   boot:
     admin:
+      url: https://<admin-application-name>.herokuapp.com/
+      auto-deregistration: true
       client:
-        url: https://<admin-application-name>.herokuapp.com/
-        instance:
-          management-base-url: https://<client-application-name>.herokuapp.com/
-          service-base-url: ${spring.boot.admin.client.instance.management-base-url}
-        auto-deregistration: true
-        period: 5m
-
-management:
-  endpoint:
-    health:
-      show-details: always
-      cache:
-        time-to-live: 1m
-  endpoints:
-    enabled-by-default: true
-    web:
-      exposure:
-        include: "*"
+        management-base-url: https://<client-application-name>.herokuapp.com/
 ----
 
 or
@@ -75,16 +60,9 @@ or
 .application.properties
 [source%nowrap,properties]
 ----
-spring.boot.admin.client.url=https://<admin-application-name>.herokuapp.com/
-spring.boot.admin.client.instance.management-base-url=https://<client-application-name>.herokuapp.com/
-spring.boot.admin.client.instance.service-base-url=${spring.boot.admin.client.instance.management-base-url}
-spring.boot.admin.client.auto-deregistration=true
-spring.boot.admin.client.period=5m
-
-management.endpoint.health.show-details=always
-management.endpoint.health.cache.time-to-live=1m
-management.endpoints.enabled-by-default=true
-management.endpoints.web.exposure.include=*
+spring.boot.admin.url=https://<admin-application-name>.herokuapp.com/
+spring.boot.admin.client.management-base-url=https://<client-application-name>.herokuapp.com/
+spring.boot.admin.auto-deregistration=true
 ----
 
 http://codecentric.github.io/spring-boot-admin/{version}/#client-applications[Additional information] about configuration client application
