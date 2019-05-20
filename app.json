@@ -22,6 +22,9 @@
     "BOOT_ADMIN_PASSWORD": {
       "description": "Value of spring.boot.security.password property",
       "generator": "secret"
+    },
+    "GRADLE_TASK": {
+      "value": "stage"
     }
   }
 }

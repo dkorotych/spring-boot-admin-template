@@ -78,3 +78,5 @@ task replaceVersion {
 	content = content.replaceAll(":version: ${versionPattern}", ":version: ${spring_boot_admin_version}")
 	file.text = content
 }
+
+task stage(dependsOn: [bootJar])
