@@ -46,7 +46,7 @@ ext {
 dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-security'
 	compile 'de.codecentric:spring-boot-admin-starter-server'
-	runtimeOnly "de.codecentric:spring-boot-admin-server-ui-login:${spring_boot_admin_version}"
+	compile "de.codecentric:spring-boot-admin-server-ui-login:${spring_boot_admin_version}"
 
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
 	testCompile 'org.springframework.security:spring-security-test'
