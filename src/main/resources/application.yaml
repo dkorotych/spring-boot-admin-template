@@ -19,11 +19,10 @@ spring:
   boot:
     admin:
       monitor:
-        status-lifetime: 5m
-        status-interval: 5m
-      ui:
-        title: ${spring.application.name}
-        brand: "<img src=\"assets/img/icon-spring-boot-admin.svg\"><span>${spring.application.name}</span>"
+        status-lifetime: 30000
+        connect-timeout: 25000
+        period: 300000
+        read-timeout: 25000
       metadata-keys-to-sanitize:
         - ".*password$"
         - ".*secret$"
@@ -32,7 +31,7 @@ spring:
         - ".*credentials.*"
         - ".*vcap_services$"
         - ".*clientId$"
-  security:
-    user:
-      name: ${BOOT_ADMIN_NAME:admin}
-      password: ${BOOT_ADMIN_PASSWORD:secret}
+security:
+  user:
+    name: ${BOOT_ADMIN_NAME:admin}
+    password: ${BOOT_ADMIN_PASSWORD:secret}
