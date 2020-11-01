@@ -27,6 +27,7 @@ buildscript {
 plugins {
 	id 'java'
 	id 'com.github.hierynomus.license' version '0.15.0'
+	id "com.github.ben-manes.versions" version "0.33.0"
 }
 
 apply plugin: "org.springframework.boot"
