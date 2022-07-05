@@ -27,7 +27,7 @@ buildscript {
 plugins {
 	id 'java'
 	id 'com.github.hierynomus.license' version '0.16.1'
-	id "com.github.ben-manes.versions" version "0.39.0"
+	id "com.github.ben-manes.versions" version "0.42.0"
 }
 
 apply plugin: "org.springframework.boot"
@@ -82,3 +82,18 @@ task replaceVersion {
 }
 
 task stage(dependsOn: [bootJar])
+
+def isNonStable = { String version ->
+	def stableKeyword = ['RELEASE', 'FINAL', 'GA'].any { it -> version.toUpperCase().contains(it) }
+	def regex = /^[0-9,.v-]+(-r)?$/
+	return !stableKeyword && !(version ==~ regex)
+}
+
+tasks.named("dependencyUpdates").configure {
+	checkConstraints = true
+	rejectVersionIf {
+		isNonStable(it.candidate.version)
+	}
+}
+
+dependencyUpdates.gradleReleaseChannel = "current"
