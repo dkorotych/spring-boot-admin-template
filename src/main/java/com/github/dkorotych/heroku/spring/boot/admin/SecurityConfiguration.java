@@ -1,5 +1,5 @@
-/*
- * Copyright 2019 Dmitry Korotych
+/**
+ * Copyright 2022 Dmitry Korotych
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,45 +16,27 @@
 package com.github.dkorotych.heroku.spring.boot.admin;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 
-@Configuration
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-    private final String adminContextPath;
-
-    public SecurityConfiguration(AdminServerProperties adminServerProperties) {
-        this.adminContextPath = adminServerProperties.getContextPath();
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
-        successHandler.setTargetUrlParameter("redirectTo");
-        successHandler.setDefaultTargetUrl(adminContextPath + "/");
-
-        http.authorizeRequests().
-                antMatchers(adminContextPath + "/assets/**").permitAll().
-                antMatchers(adminContextPath + "/login").permitAll().
-                anyRequest().authenticated().
-                and().
-                formLogin().
-                loginPage(adminContextPath + "/login").
-                successHandler(successHandler).
-                and().
-                logout().
-                logoutUrl(adminContextPath + "/logout").
-                and().
-                httpBasic().
-                and().
-                csrf().
-                csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).
-                ignoringAntMatchers(
-                        adminContextPath + "/instances",
-                        adminContextPath + "/actuator/**"
-                );
+@Configuration(proxyBeanMethods = false)
+@EnableWebFluxSecurity
+public class SecurityConfiguration {
+    @Bean
+    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http,
+                                                            AdminServerProperties adminServer) {
+        http.authorizeExchange(spec -> spec.
+                        pathMatchers(adminServer.path("/assets/**")).permitAll().
+                        pathMatchers(adminServer.path("/login")).permitAll().
+                        anyExchange().authenticated()).
+                formLogin((formLogin) -> formLogin.loginPage(adminServer.path("/login"))).
+                logout((logout) -> logout.logoutUrl(adminServer.path("/logout"))).
+                httpBasic(Customizer.withDefaults()).
+                csrf(ServerHttpSecurity.CsrfSpec::disable);
+        return http.build();
     }
 }

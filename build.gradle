@@ -35,7 +35,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.github.dkorotych.heroku.spring.boot.admin'
 version = "${spring_boot_admin_version}-SNAPSHOT"
-sourceCompatibility = '1.8'
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
@@ -47,7 +47,6 @@ ext {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'de.codecentric:spring-boot-admin-starter-server'
 	runtimeOnly 'commons-codec:commons-codec:1.15'
 
