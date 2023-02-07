@@ -14,7 +14,7 @@
 = Spring Boot Admin Template Application
 :encoding: utf-8
 :language: bash
-:version: 2.7.10
+:version: 3.0.0
 
 Spring Boot Admin Application for deploy template for Heroku
 
@@ -28,7 +28,7 @@ image:https://www.herokucdn.com/deploy/button.svg[title="Deploy",link="https://h
 ----
 <dependency>
     <groupId>de.codecentric</groupId>
-    <artifactId>spring-boot-admin-client</artifactId>
+    <artifactId>spring-boot-admin-starter-client</artifactId>
     <version>{version}</version>
 </dependency>
 ----
@@ -38,7 +38,7 @@ or
 .build.gradle
 [source,groovy,subs="+attributes"]
 ----
-implementation 'de.codecentric:spring-boot-admin-client:{version}'
+implementation 'de.codecentric:spring-boot-admin-starter-client:{version}'
 ----
 
 
@@ -70,4 +70,4 @@ spring.boot.admin.client.auto-deregistration=true
 spring.boot.admin.client.period=5m
 ----
 
-http://codecentric.github.io/spring-boot-admin/{version}/#client-applications[Additional information] about configuration client application
+http://codecentric.github.io/spring-boot-admin/{version}/getting-started.html[Additional information] about configuration client application

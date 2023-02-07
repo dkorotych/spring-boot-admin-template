@@ -31,6 +31,7 @@ public class SecurityConfiguration {
                                                             AdminServerProperties adminServer) {
         http.authorizeExchange(spec -> spec.
                         pathMatchers(adminServer.path("/assets/**")).permitAll().
+                        pathMatchers("/actuator/health/**").permitAll().
                         pathMatchers(adminServer.path("/login")).permitAll().
                         anyExchange().authenticated()).
                 formLogin((formLogin) -> formLogin.loginPage(adminServer.path("/login"))).
