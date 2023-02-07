@@ -39,6 +39,8 @@ dependencies {
 	implementation 'de.codecentric:spring-boot-admin-starter-server'
 
 	rewrite("org.openrewrite.recipe:rewrite-spring:4.32.0")
+	rewrite("org.openrewrite:rewrite-gradle:7.35.0")
+	rewrite("org.openrewrite.recipe:rewrite-github-actions:1.16.0")
 }
 
 dependencyManagement {
@@ -59,7 +61,8 @@ license {
 }
 
 rewrite {
-	activeRecipe("org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_0")
+	configFile = project.getRootProject().file("config/rewrite.yml")
+	activeRecipe("com.github.dkorotych.heroku.spring.boot.admin.Template")
 }
 
 tasks.register("replaceVersion").configure {

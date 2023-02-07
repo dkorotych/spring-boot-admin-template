@@ -1,0 +1,12 @@
+type: specs.openrewrite.org/v1beta/recipe
+name: com.github.dkorotych.heroku.spring.boot.admin.Template
+recipeList:
+  - org.openrewrite.github.ChangeDependabotScheduleInterval:
+      packageEcosystem: github-actions
+      interval: weekly
+  - org.openrewrite.github.ChangeDependabotScheduleInterval:
+      packageEcosystem: gradle
+      interval: weekly
+  - org.openrewrite.gradle.DependencyUseStringNotation
+  - org.openrewrite.java.RemoveUnusedImports
+  - org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_0
