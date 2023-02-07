@@ -72,17 +72,7 @@ task replaceVersion {
 
 task stage(dependsOn: [bootJar])
 
-def isNonStable = { String version ->
-	def stableKeyword = ['RELEASE', 'FINAL', 'GA'].any { it -> version.toUpperCase().contains(it) }
-	def regex = /^[0-9,.v-]+(-r)?$/
-	return !stableKeyword && !(version ==~ regex)
+dependencyUpdates {
+	revision = "release"
+	gradleReleaseChannel = "release"
 }
-
-tasks.named("dependencyUpdates").configure {
-	checkConstraints = true
-	rejectVersionIf {
-		isNonStable(it.candidate.version)
-	}
-}
-
-dependencyUpdates.gradleReleaseChannel = "current"
