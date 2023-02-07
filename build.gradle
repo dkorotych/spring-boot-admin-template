@@ -62,7 +62,7 @@ rewrite {
 	activeRecipe("org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_0")
 }
 
-task replaceVersion {
+tasks.register("replaceVersion").configure {
 	def file = file('README.adoc')
 	def content = file.text
 	def versionPattern = /\d+(?:\.\d+)+/
@@ -70,7 +70,9 @@ task replaceVersion {
 	file.text = content
 }
 
-task stage(dependsOn: [bootJar])
+tasks.register("stage").configure {
+	dependsOn(bootJar)
+}
 
 dependencyUpdates {
 	revision = "release"
