@@ -38,7 +38,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'de.codecentric:spring-boot-admin-starter-server'
 
-	rewrite("org.openrewrite.recipe:rewrite-spring:4.32.0")
+	rewrite("org.openrewrite.recipe:rewrite-spring:4.33.0")
 	rewrite("org.openrewrite:rewrite-gradle:7.35.0")
 	rewrite("org.openrewrite.recipe:rewrite-github-actions:1.16.0")
 }
