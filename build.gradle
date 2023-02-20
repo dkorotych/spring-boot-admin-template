@@ -40,7 +40,7 @@ dependencies {
 
 	rewrite("org.openrewrite.recipe:rewrite-spring:4.32.0")
 	rewrite("org.openrewrite:rewrite-gradle:7.35.0")
-	rewrite("org.openrewrite.recipe:rewrite-github-actions:1.16.0")
+	rewrite("org.openrewrite.recipe:rewrite-github-actions:1.17.0")
 }
 
 dependencyManagement {
