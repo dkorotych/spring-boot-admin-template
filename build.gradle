@@ -59,6 +59,7 @@ license {
 	ext.year = Calendar.getInstance().get(Calendar.YEAR)
 	ext.developers = 'Dmitry Korotych'
 	strictCheck true
+	skipExistingHeaders true
 }
 
 rewrite {
