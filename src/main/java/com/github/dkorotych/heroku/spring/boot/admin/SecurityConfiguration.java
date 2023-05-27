@@ -34,8 +34,8 @@ public class SecurityConfiguration {
                 pathMatchers("/actuator/health/**").permitAll().
                 pathMatchers(adminServer.path("/login")).permitAll().
                 anyExchange().authenticated()).
-                formLogin((formLogin) -> formLogin.loginPage(adminServer.path("/login"))).
-                logout((logout) -> logout.logoutUrl(adminServer.path("/logout"))).
+                formLogin(formLogin -> formLogin.loginPage(adminServer.path("/login"))).
+                logout(logout -> logout.logoutUrl(adminServer.path("/logout"))).
                 httpBasic(Customizer.withDefaults()).
                 csrf(ServerHttpSecurity.CsrfSpec::disable);
         return http.build();
