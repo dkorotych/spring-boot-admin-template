@@ -19,6 +19,8 @@ spring:
     admin:
       enabled: true
     name: "Admin Application"
+  thymeleaf:
+    check-template-location: false
   boot:
     admin:
       monitor:
