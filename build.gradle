@@ -45,7 +45,7 @@ dependencies {
 	testImplementation "org.glassfish.jaxb:jaxb-runtime:4.0.2"
 
 	rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.0.0"))
-	rewrite("org.glassfish.jaxb:jaxb-runtime:2.3.8")
+	rewrite("org.glassfish.jaxb:jaxb-runtime:4.0.2")
     rewrite("org.openrewrite.recipe:rewrite-spring")
 	rewrite("org.openrewrite:rewrite-gradle")
 	rewrite("org.openrewrite.recipe:rewrite-github-actions")
