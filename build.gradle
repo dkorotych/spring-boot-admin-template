@@ -36,16 +36,16 @@ repositories {
 
 dependencies {
     compileOnly "com.sun.xml.ws:jaxws-rt:4.0.1"
-    compileOnly "org.glassfish.jaxb:jaxb-runtime:4.0.2"
+    compileOnly "org.glassfish.jaxb:jaxb-runtime:4.0.3"
 
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'de.codecentric:spring-boot-admin-starter-server'
 
 	testImplementation "com.sun.xml.ws:jaxws-rt:4.0.1"
-	testImplementation "org.glassfish.jaxb:jaxb-runtime:4.0.2"
+	testImplementation "org.glassfish.jaxb:jaxb-runtime:4.0.3"
 
 	rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.0.0"))
-	rewrite("org.glassfish.jaxb:jaxb-runtime:2.3.8")
+	rewrite("org.glassfish.jaxb:jaxb-runtime:4.0.3")
     rewrite("org.openrewrite.recipe:rewrite-spring")
 	rewrite("org.openrewrite:rewrite-gradle")
 	rewrite("org.openrewrite.recipe:rewrite-github-actions")
