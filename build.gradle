@@ -48,7 +48,7 @@ dependencies {
     rewrite("org.openrewrite.recipe:rewrite-spring")
 	rewrite("org.openrewrite:rewrite-gradle")
 	rewrite("org.openrewrite.recipe:rewrite-github-actions")
-	rewrite("org.glassfish.jaxb:jaxb-runtime:2.3.8")
+	rewrite("org.glassfish.jaxb:jaxb-runtime:4.0.3")
 }
 
 dependencyManagement {
