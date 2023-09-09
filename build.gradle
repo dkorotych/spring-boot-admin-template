@@ -18,12 +18,12 @@ plugins {
 	id 'org.springframework.boot' version '3.1.3'
 	id 'io.spring.dependency-management' version '1.1.3'
 	id 'com.github.hierynomus.license' version '0.16.1'
-	id "com.github.ben-manes.versions" version "0.47.0"
-	id "org.openrewrite.rewrite" version "6.2.2"
+	id "com.github.ben-manes.versions" version "0.48.0"
+	id "org.openrewrite.rewrite" version "6.2.4"
 }
 
 ext {
-	set('springBootAdminVersion', "3.1.5")
+	set('springBootAdminVersion', "3.1.6")
 }
 
 group = 'com.github.dkorotych.heroku.spring.boot.admin'
