@@ -11,4 +11,4 @@ recipeList:
       version: 8.x
   - org.openrewrite.gradle.DependencyUseStringNotation
   - org.openrewrite.java.RemoveUnusedImports
-  - org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_0
+  - org.openrewrite.java.spring.boot3.SpringBoot3BestPractices
