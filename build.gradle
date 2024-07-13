@@ -30,7 +30,9 @@ group = 'com.github.dkorotych.heroku.spring.boot.admin'
 version = "${springBootAdminVersion}-SNAPSHOT"
 
 java {
-	sourceCompatibility = '21'
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
 }
 
 repositories {
@@ -38,14 +40,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly "com.sun.xml.ws:jaxws-rt:4.0.2"
-    compileOnly "org.glassfish.jaxb:jaxb-runtime:4.0.5"
-
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'de.codecentric:spring-boot-admin-starter-server'
 
-	testImplementation "com.sun.xml.ws:jaxws-rt:4.0.2"
-	testImplementation "org.glassfish.jaxb:jaxb-runtime:4.0.5"
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 	rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.14.0"))
     rewrite("org.openrewrite.recipe:rewrite-spring")
@@ -91,6 +90,14 @@ tasks.register("stage").configure {
 dependencyUpdates {
 	revision = "release"
 	gradleReleaseChannel = "release"
+	checkForGradleUpdate = true
+	rejectVersionIf {
+		def version = it.candidate.version
+		version.contains("alpha")
+				|| version.contains("beta")
+				|| version.matches(/.+-M\d+$/)
+				|| version.matches(/.+-RC\d+$/)
+	}
 }
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
