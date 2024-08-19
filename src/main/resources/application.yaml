@@ -41,3 +41,6 @@ spring:
     user:
       name: ${BOOT_ADMIN_NAME:admin}
       password: ${BOOT_ADMIN_PASSWORD:secret}
+  threads:
+    virtual:
+      enabled: true
