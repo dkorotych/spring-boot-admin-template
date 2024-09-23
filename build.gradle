@@ -15,11 +15,11 @@
  */
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.3.3'
+	id 'org.springframework.boot' version '3.3.4'
 	id 'io.spring.dependency-management' version '1.1.6'
 	id 'com.github.hierynomus.license' version '0.16.1'
 	id "com.github.ben-manes.versions" version "0.51.0"
-	id "org.openrewrite.rewrite" version "6.21.1"
+	id "org.openrewrite.rewrite" version "6.23.4"
 }
 
 ext {
@@ -46,7 +46,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.18.0"))
+	rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.19.0"))
     rewrite("org.openrewrite.recipe:rewrite-spring")
 	rewrite("org.openrewrite:rewrite-gradle")
 	rewrite("org.openrewrite.recipe:rewrite-github-actions")
