@@ -15,15 +15,15 @@
  */
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.3.4'
+	id 'org.springframework.boot' version '3.4.0'
 	id 'io.spring.dependency-management' version '1.1.6'
 	id 'com.github.hierynomus.license' version '0.16.1'
 	id "com.github.ben-manes.versions" version "0.51.0"
-	id "org.openrewrite.rewrite" version "6.24.0"
+	id "org.openrewrite.rewrite" version "6.28.3"
 }
 
 ext {
-	set('springBootAdminVersion', "3.3.3")
+	set('springBootAdminVersion', "3.4.1")
 }
 
 group = 'com.github.dkorotych.heroku.spring.boot.admin'
@@ -46,7 +46,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-	rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.20.0"))
+	rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.23.1"))
     rewrite("org.openrewrite.recipe:rewrite-spring")
 	rewrite("org.openrewrite:rewrite-gradle")
 	rewrite("org.openrewrite.recipe:rewrite-github-actions")
