@@ -63,11 +63,11 @@ bootJar {
 }
 
 license {
-	header project.file('config/license-header.txt')
+	header = project.file('config/license-header.txt')
 	ext.year = Calendar.getInstance().get(Calendar.YEAR)
 	ext.developers = 'Dmitry Korotych'
-	strictCheck true
-	skipExistingHeaders true
+	strictCheck = true
+	skipExistingHeaders = true
 }
 
 rewrite {
