@@ -35,6 +35,42 @@ java {
 	}
 }
 
+// Performance optimizations
+tasks.withType(JavaCompile).configureEach {
+	options.compilerArgs += [
+		'-Xlint:unchecked',
+		'-Xlint:deprecation',
+		'--enable-preview'
+	]
+	options.encoding = 'UTF-8'
+	options.incremental = true
+}
+
+// JVM optimization for runtime
+tasks.withType(JavaExec).configureEach {
+	jvmArgs += [
+		'-XX:+UseG1GC',
+		'-XX:+UseStringDeduplication',
+		'-XX:+OptimizeStringConcat',
+		'-XX:+UseCompressedOops',
+		'-XX:+UseCompressedClassPointers',
+		'-XX:+TieredCompilation',
+		'-XX:TieredStopAtLevel=1',
+		'-Djava.security.egd=file:/dev/./urandom',
+		'-Dspring.jmx.enabled=false',
+		'-Dspring.backgroundpreinitializer.ignore=true'
+	]
+}
+
+// Boot JAR optimization
+bootJar {
+	archiveFileName = 'admin-console.jar'
+	optimizedLaunch = true
+	layered {
+		enabled = true
+	}
+}
+
 repositories {
 	mavenCentral()
 }
@@ -42,6 +78,14 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'de.codecentric:spring-boot-admin-starter-server'
+	
+	// Performance monitoring and metrics
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'io.micrometer:micrometer-registry-prometheus'
+	
+	// Optional: Add caching for better performance
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'com.github.ben-manes.caffeine:caffeine'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -58,9 +102,7 @@ dependencyManagement {
 	}
 }
 
-bootJar {
-	archiveFileName = 'admin-console.jar'
-}
+
 
 license {
 	header = project.file('config/license-header.txt')
@@ -101,4 +143,35 @@ dependencyUpdates {
 }
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+    forkEvery = 100
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
+}
+
+// Build performance optimizations
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.fork = true
+        options.forkOptions.jvmArgs += ['-Xmx2g']
+    }
+}
+
+// Parallel execution
+tasks.withType(AbstractCompile).configureEach {
+    options.fork = true
+    options.forkOptions.jvmArgs += ['-Xmx2g']
+}
+
+// Dependency resolution optimization
+configurations.all {
+    resolutionStrategy {
+        cacheChangingModulesFor 0, 'seconds'
+        cacheDynamicVersionsFor 0, 'seconds'
+        force 'org.springframework:spring-core:6.1.0'
+        force 'org.springframework:spring-web:6.1.0'
+        force 'org.springframework:spring-webmvc:6.1.0'
+    }
 }

@@ -21,14 +21,25 @@ spring:
     name: "Admin Application"
   thymeleaf:
     check-template-location: false
+    cache: true
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML
   boot:
     admin:
       monitor:
-        status-lifetime: 5m
-        status-interval: 5m
+        status-lifetime: 10m
+        status-interval: 10m
+        info-lifetime: 10m
+        info-interval: 10m
+        metrics-lifetime: 10m
+        metrics-interval: 10m
       ui:
         title: ${spring.application.name}
         brand: "<img src=\"assets/img/icon-spring-boot-admin.svg\"><span>${spring.application.name}</span>"
+        favicon: "assets/img/favicon.png"
+        favicon-danger: "assets/img/favicon-danger.png"
       metadata-keys-to-sanitize:
         - ".*password$"
         - ".*secret$"
@@ -44,3 +55,75 @@ spring:
   threads:
     virtual:
       enabled: true
+  webflux:
+    base-path: /
+  servlet:
+    multipart:
+      enabled: false
+  mvc:
+    async:
+      request-timeout: 30000
+  resources:
+    cache:
+      cachecontrol:
+        max-age: 3600
+        cache-public: true
+    chain:
+      strategy:
+        content:
+          enabled: true
+        fixed:
+          enabled: true
+          paths: /assets/**,/css/**,/js/**,/images/**
+          version: "v1.0"
+
+# Performance optimizations
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: when-authorized
+      show-components: when-authorized
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+      percentiles:
+        http.server.requests: 0.5, 0.95, 0.99
+      slo:
+        http.server.requests: 50ms, 100ms, 200ms, 500ms
+
+# Logging optimization
+logging:
+  level:
+    org.springframework.web: WARN
+    org.springframework.security: WARN
+    de.codecentric.boot.admin: INFO
+    root: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Server optimization
+server:
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json,application/xml
+    min-response-size: 1024
+  http2:
+    enabled: true
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 10
+    connection-timeout: 20000
+    max-connections: 8192
+    accept-count: 100
+    max-http-post-size: 2MB
+    max-swallow-size: 2MB
