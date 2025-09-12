@@ -8,7 +8,9 @@ recipeList:
       packageEcosystem: gradle
       interval: weekly
   - org.openrewrite.gradle.UpdateGradleWrapper:
-      version: 8.x
+      version: 9.x
+  - org.openrewrite.gradle.GradleBestPractices
   - org.openrewrite.gradle.DependencyUseStringNotation
   - org.openrewrite.java.RemoveUnusedImports
-  - org.openrewrite.java.spring.boot3.SpringBoot3BestPractices
+  - org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_5
+  - org.openrewrite.java.spring.boot3.SpringBoot33BestPractices
