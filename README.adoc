@@ -70,4 +70,4 @@ spring.boot.admin.client.auto-deregistration=true
 spring.boot.admin.client.period=5m
 ----
 
-http://codecentric.github.io/spring-boot-admin/{version}/getting-started.html[Additional information] about configuration client application
+https://docs.spring-boot-admin.com/{version}/docs/client[Additional information] about configuration client application
