@@ -15,7 +15,7 @@
  */
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.5.16'
+	id 'org.springframework.boot' version '4.1.0'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'com.github.hierynomus.license' version '0.16.1'
 	id "com.github.ben-manes.versions" version "0.54.0"
@@ -23,7 +23,7 @@ plugins {
 }
 
 ext {
-	set('springBootAdminVersion', "3.5.9")
+	set('springBootAdminVersion', "4.1.1")
 }
 
 group = 'com.github.dkorotych.heroku.spring.boot.admin'
@@ -42,14 +42,15 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'de.codecentric:spring-boot-admin-starter-server'
-
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:3.33.0"))
     rewrite("org.openrewrite.recipe:rewrite-spring")
 	rewrite("org.openrewrite:rewrite-gradle")
 	rewrite("org.openrewrite.recipe:rewrite-github-actions")
+	runtimeOnly "jakarta.xml.bind:jakarta.xml.bind-api:4.0.5"
+	runtimeOnly "javax.xml.bind:jaxb-api:2.3.1"
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 dependencyManagement {
